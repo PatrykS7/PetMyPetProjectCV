@@ -6,6 +6,8 @@ The petHotel_backend folder holds reactive REST API (with WebFlux) used to servi
 
 The PetMyPetEmail folder contains the backend application that conducts the email verification and password reset systems. For a given request, application composes an email message with a unique link that leads to a website where the user can fulfill his call.
 
-Both apps are treated like microservices and are communicating to each other using  Eureka Server which (very) basic implementation is in PetMyPetEurekaServer folder.
+The PetMyPetImages folder holds service for uploading images by user and saving them on local hard drive, and serving them to the frontend.
+
+All apps are treated like microservices and are communicating to each other using  Eureka Server which (very) basic implementation is in PetMyPetEurekaServer folder.
 
 In the future, I am planning to add reactive service for images management and dig deeper into Spring Cloud.
