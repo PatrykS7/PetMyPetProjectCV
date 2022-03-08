@@ -1,0 +1,21 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+         - id: image-service
+           uri: lb://IMAGE-SERVICE
+           predicates:
+             - Path=/images/**
+         - id: email-service
+           uri: lb://EMAIL-SERVICE
+           predicates:
+               - Path=/email/**
+         - id: api
+           uri: lb://API
+           predicates:
+               - Path=/api/**
