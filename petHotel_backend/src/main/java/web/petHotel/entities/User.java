@@ -13,7 +13,7 @@ public class User implements Persistable<String> {
     @Id
     private String username;
     private String password;
-    private boolean enabled = true;
+    private boolean enabled = false;
     private String authority;
 
     public User(String username, String password, boolean enabled, String authority) {

@@ -36,6 +36,8 @@ public class SecurityConfig {
                  "/api/hotel/**",
                  "/api/getAllTypes",
                  "/api/getTypeById/**",
+                 "/api/closedDaysByHotelId/**",
+                 "/api/hotelsFilter",
                 // -- Swagger UI v2
                 "/v2/api-docs",
                 "/swagger-resources",

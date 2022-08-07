@@ -13,6 +13,12 @@ public interface ReviewsRepo extends ReactiveCrudRepository<Reviews, Tuple2<Stri
     @Query("SELECT * FROM core.reviews")
     Flux<Reviews> getAll();
 
+    @Query("SELECT * FROM core.reviews WHERE username=:username")
+    Flux<Reviews> getAllByUsername(String username);
+
+    @Query("SELECT score FROM core.reviews WHERE username=:username AND hotel_id=:hotelId")
+    Mono<Integer> getReviewByUsernameAndHotelId(String username, Long hotelId);
+
     @Query("INSERT INTO core.reviews VALUES (:username, :hotelId, :score)")
     Mono<Reviews> insertReview(String username, Long hotelId, Integer score);
 

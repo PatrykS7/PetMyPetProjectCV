@@ -5,10 +5,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import web.petHotel.JSON.Filters;
 import web.petHotel.entities.Hotel;
 import web.petHotel.service.HotelService;
-
-import javax.management.monitor.Monitor;
 
 @RestController
 @RequestMapping("/api")
@@ -22,6 +21,13 @@ public class HotelController {
 
         return hotelService.getHotelByPages(page);
     }
+
+    @PostMapping("/hotelsFilter")
+    public Flux<Hotel> getFilteredHotelByPages(@RequestBody Filters filters, @RequestParam(value = "page", defaultValue = "1") int page){
+
+        return hotelService.getFilteredHotelByPages(filters, page);
+    }
+
 
     @GetMapping("/hotel/{id}")
     public Mono<Hotel> getHotelById(@PathVariable Long id){
@@ -55,5 +61,12 @@ public class HotelController {
     public Flux<Hotel> getFavouritesHotelsByUsername(@PathVariable String username){
 
         return hotelService.getFavouritesHotels(username);
+    }
+
+    @PreAuthorize("hasRole('OWNER')")
+    @DeleteMapping("/deleteHotelById/{hotelId}")
+    public Mono<Void> deleteHotelById(@PathVariable Long hotelId){
+
+        return hotelService.deleteHotelById(hotelId);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import web.petHotel.JSON.ReservationWithData;
+import web.petHotel.JSON.ReservationWithDataWithPhoneNum;
 import web.petHotel.entities.Reservation;
 import web.petHotel.service.ReservationService;
 
@@ -22,21 +23,21 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @PreAuthorize("hasRole('OWNER')")
+    @PreAuthorize("hasAnyRole('OWNER','USER')")
     @GetMapping("/reservation/{id}")
     public Mono<Reservation> getReservationById(@PathVariable Long id){
 
         return reservationService.getReservationById(id);
     }
 
-    @PreAuthorize("hasRole('OWNER')")
+    @PreAuthorize("hasAnyRole('OWNER','USER')")
     @PostMapping("/saveReservation")
     public Mono<Reservation> saveReservation(@RequestBody Mono<Reservation> postReservation){
 
         return reservationService.saveReservation(postReservation);
     }
 
-    @PreAuthorize("hasRole('OWNER')")
+    @PreAuthorize("hasAnyRole('OWNER','USER')")
     @PatchMapping("/patchReservation")
     public Mono<Reservation> updateReservation(@RequestBody Mono<Reservation> patchReservation){
 
@@ -53,7 +54,7 @@ public class ReservationController {
 
     @PreAuthorize("hasAnyRole('OWNER','USER')")
     @GetMapping("/ownerReservations/{owner}")
-    public Flux<ReservationWithData> getReservationsByOwnerWithDetails(@PathVariable String owner){
+    public Flux<ReservationWithDataWithPhoneNum> getReservationsByOwnerWithDetails(@PathVariable String owner){
 
         return reservationService.getReservationsByOwnerWithDetails(owner);
     }
@@ -67,8 +68,15 @@ public class ReservationController {
 
     @PreAuthorize("hasAnyRole('OWNER','USER')")
     @GetMapping("/ownerFinishedReservations/{owner}")
-    public Flux<ReservationWithData> getFinishedReservationsByOwnerWithDetails(@PathVariable String owner){
+    public Flux<ReservationWithDataWithPhoneNum> getFinishedReservationsByOwnerWithDetails(@PathVariable String owner){
 
         return reservationService.getFinishedReservationsByOwnerWithDetails(owner);
+    }
+
+    @PreAuthorize("hasAnyRole('OWNER','USER')")
+    @DeleteMapping("/deleteReservation/{id}")
+    public Mono<Void> deleteById(@PathVariable Long id){
+
+        return reservationService.deleteById(id);
     }
 }

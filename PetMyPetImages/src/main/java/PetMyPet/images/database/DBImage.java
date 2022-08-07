@@ -1,8 +1,7 @@
 package PetMyPet.images.database;
 
-import PetMyPet.images.files.FileService;
+import PetMyPet.images.files.FileTools;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -23,12 +22,15 @@ public class DBImage implements Persistable<Long> {
 
     private String path;
 
+    @Column("main_image")
+    private Boolean mainImage;
+
     public DBImage(Long hotelId, String path) {
 
         this.hotelId = hotelId;
 
         String salt = UUID.randomUUID().toString();
-        this.path = hotelId + "_" + salt +  FileService.cleanName(path);
+        this.path = hotelId + "_" + salt +  FileTools.cleanName(path);
     }
 
     @Override

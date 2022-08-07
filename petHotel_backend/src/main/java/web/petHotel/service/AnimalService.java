@@ -45,4 +45,9 @@ public class AnimalService {
         return animalRepo.findAnimalByOwner(owner)
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Can't find any animals")));
     }
+
+    public Mono<Void> deleteAnimal(Long id) {
+
+        return animalRepo.deleteById(id);
+    }
 }

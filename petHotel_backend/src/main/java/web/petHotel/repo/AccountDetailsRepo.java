@@ -9,4 +9,7 @@ public interface AccountDetailsRepo extends ReactiveCrudRepository<AccountDetail
 
     Mono<AccountDetails> findByUsername(String username);
 
+    @Query("SELECT phone_number FROM core.account_details WHERE username = :username")
+    Mono<String> getPhoneNumberByUsername(String username);
+
 }

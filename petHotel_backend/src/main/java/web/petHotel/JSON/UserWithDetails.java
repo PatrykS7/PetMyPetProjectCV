@@ -14,7 +14,7 @@ public class UserWithDetails {
 
     private String username;
     private String password;
-    private boolean enabled = true;
+    private boolean enabled = false;
     private String authority;
     private String firstName;
     private String lastName;

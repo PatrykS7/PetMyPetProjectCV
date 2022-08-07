@@ -14,9 +14,8 @@ import java.util.Map;
 @Component
 public class JWTUtil {
 
-    //TODO move to application.properties
-    private final String secret = "############################################################";
-    private final Long expirationTime = 43200L;
+    private final String secret = "saltsaltsaltsaltsaltsaltsaltsaltsaltsaltsaltsaltsaltsaltsaltsalt";
+    private final Long expirationTime = 172800L;
 
     private final Key key;
     private final JwtParser parser;

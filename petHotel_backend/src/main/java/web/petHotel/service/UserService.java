@@ -89,7 +89,7 @@ public class UserService {
                     return userRepo.saveAll(ud.convertToUser()).next()
                             .then( webClient.build()
                                     .post()
-                                    .uri("http://EMAIL-SERVICE/email/generateToken/" + ud.getUsername())
+                                    .uri("http://EMAIL-SERVICE/email/generateToken/" + ud.getUsername() + "/activate")
                                     .retrieve()
                                     .bodyToMono(Object.class))
                             .then(accountDetailsRepo.saveAll(ud.convertToAccountDetails()).next())
@@ -141,5 +141,10 @@ public class UserService {
                         return Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unable to login"));
                 })
                 .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unable to login")));
+    }
+
+    public Mono<Void> deleteUserByUsername(String username) {
+
+        return userRepo.deleteUserByUsername(username);
     }
 }

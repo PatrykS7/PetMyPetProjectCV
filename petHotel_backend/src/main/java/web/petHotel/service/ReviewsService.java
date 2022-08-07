@@ -46,4 +46,16 @@ public class ReviewsService {
         return review.flatMap( rev ->
                         reviewsRepo.deleteReview(rev.getUsername(),rev.getHotelId()));
     }
+
+    public Flux<Reviews> getReviewsByUsername(String username) {
+
+        return reviewsRepo.getAllByUsername(username)
+                .onErrorResume( Exception.class, e ->
+                        Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find reviews")));
+    }
+
+    public Mono<Integer> reviewByUsernameAndHotel(String username, Long hotelId) {
+
+        return reviewsRepo.getReviewByUsernameAndHotelId(username, hotelId);
+    }
 }

@@ -30,6 +30,9 @@ public class Hotel implements Persistable<Long> {
     private String contactEmail;
     private String owner;
 
+    private Double lon;
+    private Double lat;
+
     @Transient
     private Map<Long, Float> prices = new HashMap<>();
 

@@ -23,7 +23,6 @@ public class ClosedDayController {
         return closedDayService.getClosedDaysByOwner(username);
     }
 
-    @PreAuthorize("hasAnyRole('OWNER','USER')")
     @GetMapping("/closedDaysByHotelId/{id}")
     public Flux<ClosedDay> getClosedDayByHotelId(@PathVariable Long id){
 

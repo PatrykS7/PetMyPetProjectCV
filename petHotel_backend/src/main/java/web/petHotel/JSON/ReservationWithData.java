@@ -20,5 +20,4 @@ public class ReservationWithData {
     private LocalDate checkIn;
     private LocalDate checkOut;
     private String status;
-
 }

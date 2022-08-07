@@ -41,4 +41,11 @@ public class AnimalController {
 
         return animalService.patchAnimal(animalMono);
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @DeleteMapping("/deleteAnimal/{id}")
+    public Mono<Void> deleteAnimal(@PathVariable Long id){
+
+        return animalService.deleteAnimal(id);
+    }
 }

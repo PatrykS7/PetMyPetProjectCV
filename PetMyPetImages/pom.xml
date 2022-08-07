@@ -11,7 +11,7 @@
 	<groupId>PetMyPet</groupId>
 	<artifactId>images</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>images</name>
 	<description>PetMyPet Imgae API</description>
 	<properties>
