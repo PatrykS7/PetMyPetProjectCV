@@ -17,7 +17,7 @@ public class GmailConfig {
         mailSender.setPort(587);
 
         mailSender.setUsername("petmypetmail@gmail.com");
-        mailSender.setPassword("iscnlwbpqqivcloe");
+        mailSender.setPassword("");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
